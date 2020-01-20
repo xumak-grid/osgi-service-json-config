@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+    <servers>
+        
+    </servers>
+
+    <profiles>
+        <profile>
+            <id>project-nexus-repository</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <repositories>
+                <repository>
+                    <id>myCompany-nexus</id>
+                    <name>Nexus Public</name>
+                    <url></url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </repository>
+            </repositories>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>myCompany-nexus</id>
+                    <name>Nexus Public</name>
+                    <url></url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>true</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+
+        <!-- SonarCuve Test -->
+        <profile>
+            <id>kas-developer</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <sonar.login>caa4eb9b350815d2ada4253b9e3c477cbb3e6974</sonar.login>
+                <sonar.analysis.mode>preview</sonar.analysis.mode>
+                <sonar.host.url>http://10.4.4.237:9000/</sonar.host.url>
+                <sonar.report.export.path>result.json</sonar.report.export.path>
+                <sonar.compile.break>true</sonar.compile.break>
+                <!--sonar.error.allowed>0</sonar.error.allowed>
+                <sonar.kas.off>false</sonar.kas.off>
+                <sonar.skip>${sonar.kas.off}</sonar.skip-->
+            </properties>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>nexus-xumak-qaqc</id>
+                    <name>XumaK QAQC Repository</name>
+                    <url>http://nexus/repository/qa-automation/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+        <profile>
+            <id>kas-qaqc</id>
+            <properties>
+                <sonar.login>caa4eb9b350815d2ada4253b9e3c477cbb3e6974</sonar.login>
+                <sonar.analysis.mode>publish</sonar.analysis.mode>
+                <sonar.host.url>http://10.4.4.237:9000/</sonar.host.url>
+                <sonar.kas.off>true</sonar.kas.off>
+            </properties>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>nexus-xumak-qaqc</id>
+                    <name>XumaK QAQC Repository</name>
+                    <url>http://nexus/repository/qa-automation/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+        <profile>
+            <id>kas-pass</id>
+            <properties>
+                <sonar.kas.off>true</sonar.kas.off>
+                <sonar.skip>${sonar.kas.off}</sonar.skip>
+            </properties>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>nexus-xumak-qaqc</id>
+                    <name>XumaK QAQC Repository</name>
+                    <url>http://nexus/repository/qa-automation/</url>
+                </pluginRepository>
+            </pluginRepositories>
+        </profile>
+        <!-- /Sonarcube Test -->
+    </profiles>
+    <activeProfiles>
+        <activeProfile>project-nexus-repository</activeProfile>
+    </activeProfiles>
+</settings>
